@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "invoices": [
+    {
+      "id": "inv_156355_isgs",
+      "language": "ms",
+      "title": "INVOIS",
+      "invoiceNumber": "#INV-156355-ISGS",
+      "sender": {
+        "name": "Nur Asmawi Subri",
+        "addressLine1": "Blok J-10-6, Desa Setia Wira, Jalan Buku 5,",
+        "addressLine2": "54000 Dato Keramat, Kuala Lumpur",
+        "phone": "Tel: 601111458944",
+        "email": "E-mel: maui@sabily.info"
+      },
+      "recipient": {
+        "label": "KEPADA",
+        "name": "Bespoke Intergrated Sdn Bhd",
+        "addressLine1": "No 6A, Jalan 4/12B, Seksyen 4 Tambahan, Bandar Baru",
+        "addressLine2": "Bangi, 43650 Selangor",
+        "phone": "Tel: 60121234567",
+        "email": "E-mel: noreply@bespoke.my"
+      },
+      "dates": {
+        "invoiceDate": "8/3/2026",
+        "dueDate": "8/3/2026"
+      },
+      "items": [
+        {
+          "id": "item_1",
+          "description": "Tenaga Pengajar LZNK",
+          "quantity": 4.00,
+          "unitPrice": 1500.00,
+          "amount": 6000.00
+        },
+        {
+          "id": "item_2",
+          "description": "Pembangunan Sistem ZakatAnda",
+          "quantity": 1.00,
+          "unitPrice": 400.00,
+          "amount": 400.00
+        },
+        {
+          "id": "item_3",
+          "description": "Pembangunan Sistem Pios",
+          "quantity": 1.00,
+          "unitPrice": 100.00,
+          "amount": 100.00
+        }
+      ],
+      "totals": {
+        "subtotal": 6500.00,
+        "total": 6500.00,
+        "amountPaid": 0.00,
+        "balanceDue": 6500.00
+      },
+      "paymentDetails": {
+        "title": "BUTIRAN PEMBAYARAN",
+        "bankName": "AEON Bank",
+        "accountNumber": "9988555603677",
+        "accountName": "Nur Asmawi Subri",
+        "idNumber": "840724-02-5433",
+        "qrCodeUrl": "assets/aeon-qr-sample.svg"
+      },
+      "footer": {
+        "text": "TERIMA KASIH ATAS URUSAN ANDA"
+      },
+      "createdAt": "2026-03-08T10:00:00.000Z",
+      "updatedAt": "2026-03-08T10:00:00.000Z"
+    }
+  ]
+}

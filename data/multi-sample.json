@@ -1,0 +1,172 @@
+{
+  "version": "1.0",
+  "invoices": [
+    {
+      "id": "inv_001_original",
+      "language": "ms",
+      "title": "INVOIS",
+      "invoiceNumber": "#INV-156355-ISGS",
+      "sender": {
+        "name": "Nur Asmawi Subri",
+        "addressLine1": "Blok J-10-6, Desa Setia Wira, Jalan Buku 5,",
+        "addressLine2": "54000 Dato Keramat, Kuala Lumpur",
+        "phone": "Tel: 601111458944",
+        "email": "E-mel: maui@sabily.info"
+      },
+      "recipient": {
+        "label": "KEPADA",
+        "name": "Bespoke Intergrated Sdn Bhd",
+        "addressLine1": "No 6A, Jalan 4/12B, Seksyen 4 Tambahan, Bandar Baru",
+        "addressLine2": "Bangi, 43650 Selangor",
+        "phone": "Tel: 60121234567",
+        "email": "E-mel: noreply@bespoke.my"
+      },
+      "dates": {
+        "invoiceDate": "8/3/2026",
+        "dueDate": "8/3/2026"
+      },
+      "items": [
+        {
+          "id": "item_1",
+          "description": "Tenaga Pengajar LZNK",
+          "quantity": 4.0,
+          "unitPrice": 1500.0,
+          "amount": 6000.0
+        },
+        {
+          "id": "item_2",
+          "description": "Pembangunan Sistem ZakatAnda",
+          "quantity": 1.0,
+          "unitPrice": 400.0,
+          "amount": 400.0
+        },
+        {
+          "id": "item_3",
+          "description": "Pembangunan Sistem Pios",
+          "quantity": 1.0,
+          "unitPrice": 100.0,
+          "amount": 100.0
+        }
+      ],
+      "totals": {
+        "subtotal": 6500.0,
+        "total": 6500.0,
+        "amountPaid": 0.0,
+        "balanceDue": 6500.0
+      },
+      "paymentDetails": {
+        "title": "BUTIRAN PEMBAYARAN",
+        "bankName": "AEON Bank",
+        "accountNumber": "9988555603677",
+        "accountName": "Nur Asmawi Subri",
+        "idNumber": "840724-02-5433",
+        "qrCodeUrl": "assets/aeon-qr-sample.svg"
+      },
+      "footer": {
+        "text": "TERIMA KASIH ATAS URUSAN ANDA"
+      }
+    },
+    {
+      "id": "inv_002_duplicate_en",
+      "language": "en",
+      "title": "INVOICE",
+      "invoiceNumber": "#INV-156355-ISGS (English)",
+      "sender": {
+        "name": "Nur Asmawi Subri",
+        "addressLine1": "Block J-10-6, Desa Setia Wira, Jalan Buku 5,",
+        "addressLine2": "54000 Dato Keramat, Kuala Lumpur",
+        "phone": "Tel: 601111458944",
+        "email": "Email: maui@sabily.info"
+      },
+      "recipient": {
+        "label": "BILLED TO",
+        "name": "Bespoke Intergrated Sdn Bhd",
+        "addressLine1": "No 6A, Jalan 4/12B, Seksyen 4 Tambahan, Bandar Baru",
+        "addressLine2": "Bangi, 43650 Selangor",
+        "phone": "Tel: 60121234567",
+        "email": "Email: noreply@bespoke.my"
+      },
+      "dates": {
+        "invoiceDate": "15/3/2026",
+        "dueDate": "15/3/2026"
+      },
+      "items": [
+        {
+          "id": "item_1",
+          "description": "Lead Instructor LZNK Phase 2",
+          "quantity": 2.0,
+          "unitPrice": 1500.0,
+          "amount": 3000.0
+        }
+      ],
+      "totals": {
+        "subtotal": 3000.0,
+        "total": 3000.0,
+        "amountPaid": 1000.0,
+        "balanceDue": 2000.0
+      },
+      "paymentDetails": {
+        "title": "PAYMENT DETAILS",
+        "bankName": "AEON Bank",
+        "accountNumber": "9988555603677",
+        "accountName": "Nur Asmawi Subri",
+        "idNumber": "840724-02-5433",
+        "qrCodeUrl": "assets/aeon-qr-sample.svg"
+      },
+      "footer": {
+        "text": "THANK YOU FOR YOUR BUSINESS"
+      }
+    },
+    {
+      "id": "inv_003_samename_ms",
+      "language": "ms",
+      "title": "INVOIS",
+      "invoiceNumber": "#INV-156355-ISGS",
+      "sender": {
+        "name": "Nur Asmawi Subri",
+        "addressLine1": "Blok J-10-6, Desa Setia Wira, Jalan Buku 5,",
+        "addressLine2": "54000 Dato Keramat, Kuala Lumpur",
+        "phone": "Tel: 601111458944",
+        "email": "E-mel: maui@sabily.info"
+      },
+      "recipient": {
+        "label": "KEPADA",
+        "name": "Bespoke Intergrated Sdn Bhd",
+        "addressLine1": "No 6A, Jalan 4/12B, Seksyen 4 Tambahan, Bandar Baru",
+        "addressLine2": "Bangi, 43650 Selangor",
+        "phone": "Tel: 60121234567",
+        "email": "E-mel: noreply@bespoke.my"
+      },
+      "dates": {
+        "invoiceDate": "22/3/2026",
+        "dueDate": "22/3/2026"
+      },
+      "items": [
+        {
+          "id": "item_1",
+          "description": "Penyelenggaraan Bulanan Pelayan Cloud",
+          "quantity": 1.0,
+          "unitPrice": 850.0,
+          "amount": 850.0
+        }
+      ],
+      "totals": {
+        "subtotal": 850.0,
+        "total": 850.0,
+        "amountPaid": 850.0,
+        "balanceDue": 0.0
+      },
+      "paymentDetails": {
+        "title": "BUTIRAN PEMBAYARAN",
+        "bankName": "AEON Bank",
+        "accountNumber": "9988555603677",
+        "accountName": "Nur Asmawi Subri",
+        "idNumber": "840724-02-5433",
+        "qrCodeUrl": "assets/aeon-qr-sample.svg"
+      },
+      "footer": {
+        "text": "TERIMA KASIH ATAS URUSAN ANDA"
+      }
+    }
+  ]
+}

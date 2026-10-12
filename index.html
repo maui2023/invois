@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InVois - Sistem Invois HTML5 Tanpa Database</title>
+  <meta name="description"
+    content="Aplikasi invois HTML5 offline tanpa pangkalan data. Pengguna bebas menaip, simpan dan muat data.json, urus senarai dan cetak PDF tepat seperti templat standard.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧾</text></svg>">
+</head>
+
+<body>
+
+  <!-- App Header / Toolbar -->
+  <header class="app-header no-print">
+    <div class="brand-section">
+      <div class="brand-icon">🧾</div>
+      <div class="brand-title-group">
+        <h1>
+          InVois
+          <span class="badge-offline">Offline / Tiada DB</span>
+        </h1>
+        <div class="brand-tagline">Simpan & Muat data.json Terus Dari PC/Telefon</div>
+      </div>
+    </div>
+
+    <div class="toolbar-actions">
+      <!-- File Picker Trigger -->
+      <button type="button" class="btn btn-secondary" id="btnTriggerLoad" title="Muat naik fail data.json dari peranti">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+        </svg>
+        Muat data.json
+      </button>
+
+      <!-- Save JSON Trigger -->
+      <button type="button" class="btn btn-secondary" id="btnSaveJson"
+        title="Simpan data ke dalam fail data.json di PC/Telefon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+        </svg>
+        Simpan data.json
+      </button>
+
+      <!-- Open Data Manager Modal -->
+      <button type="button" class="btn btn-secondary" id="btnOpenDataManager"
+        title="Buka senarai invois dan urus pendua/muat data">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+          </path>
+        </svg>
+        Pengurus Data
+        <span class="badge-count" id="badgeInvoiceCount">1</span>
+      </button>
+
+      <!-- New Invoice Button -->
+      <button type="button" class="btn btn-secondary" id="btnNewInvoice" title="Cipta invois baru kosong">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+        </svg>
+        Invois Baru
+      </button>
+
+      <!-- Language Switcher (Per-Invoice) -->
+      <div class="lang-switch-wrapper no-print" title="Pilih bahasa invois ini (disimpan mengikut invois)">
+        <span class="lang-switch-label">Bahasa:</span>
+        <div class="lang-switch-group">
+          <button type="button" class="btn-lang active" id="btnLangMs" data-lang="ms"
+            title="Tukar ke Bahasa Melayu">🇲🇾 Melayu</button>
+          <button type="button" class="btn-lang" id="btnLangEn" data-lang="en" title="Switch to English">🇬🇧
+            English</button>
+        </div>
+      </div>
+
+      <!-- Print / PDF Button -->
+      <button type="button" class="btn btn-primary" id="btnPrintPdf" title="Cetak invois atau simpan sebagai PDF">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
+          </path>
+        </svg>
+        Cetak / Simpan PDF
+      </button>
+    </div>
+  </header>
+
+  <!-- Hidden File Input for Loading JSON -->
+  <input type="file" id="jsonFileInput" accept=".json,application/json" style="display: none;">
+
+  <!-- Hidden File Input for Uploading Custom QR Image -->
+  <input type="file" id="qrFileInput" accept="image/*" style="display: none;">
+
+  <!-- Secondary Tips Bar -->
+  <div class="tips-bar no-print">
+    <span>💡 <strong>Pengeditan Terus:</strong> Klik mana-mana teks atau angka di atas kertas invois untuk menaip.
+      Pengiraan dilakukan secara automatik.</span>
+    <div class="tips-actions">
+      <button type="button" class="btn btn-secondary" style="padding: 0.25rem 0.6rem; font-size: 0.72rem;"
+        id="btnSaveToStorage">
+        💾 Simpan ke Senarai
+      </button>
+      <span class="quick-link" id="btnResetSample">Muat Semula Contoh Asal</span>
+    </div>
+  </div>
+
+  <!-- Main Canvas Workspace -->
+  <main class="workspace-wrapper">
+
+    <!-- Printable / Exportable A4 Sheet -->
+    <article class="paper-sheet" id="invoicePaper">
+
+      <!-- Top Header Section -->
+      <header class="doc-header">
+        <div class="doc-header-left">
+          <h2 class="doc-title" id="docTitle" contenteditable="true" spellcheck="false">INVOIS</h2>
+          <div class="doc-inv-number" id="docInvoiceNumber" contenteditable="true" spellcheck="false">#INV-156355-ISGS
+          </div>
+        </div>
+
+        <div class="doc-header-right">
+          <div class="sender-name" id="senderName" contenteditable="true" spellcheck="false">Nur Asmawi Subri</div>
+          <div id="senderAddress1" contenteditable="true" spellcheck="false">Blok J-10-6, Desa Setia Wira, Jalan Buku 5,
+          </div>
+          <div id="senderAddress2" contenteditable="true" spellcheck="false">54000 Dato Keramat, Kuala Lumpur</div>
+          <div id="senderPhone" contenteditable="true" spellcheck="false">Tel: 601111458944</div>
+          <div id="senderEmail" contenteditable="true" spellcheck="false">E-mel: maui@sabily.info</div>
+        </div>
+      </header>
+
+      <!-- Solid Divider Line -->
+      <div class="doc-divider-thick"></div>
+
+      <!-- Recipient & Dates Meta Section -->
+      <section class="doc-meta-section">
+        <!-- Recipient Information (Left) -->
+        <div class="recipient-block">
+          <div class="section-label-spaced" id="recipientLabel" contenteditable="true" spellcheck="false">KEPADA</div>
+          <div class="recipient-name" id="recipientName" contenteditable="true" spellcheck="false">Bespoke Intergrated
+            Sdn Bhd</div>
+          <div class="recipient-address" id="recipientAddress1" contenteditable="true" spellcheck="false">No 6A, Jalan
+            4/12B, Seksyen 4 Tambahan, Bandar Baru</div>
+          <div class="recipient-address" id="recipientAddress2" contenteditable="true" spellcheck="false">Bangi, 43650
+            Selangor</div>
+          <div class="recipient-contact" id="recipientPhone" contenteditable="true" spellcheck="false">Tel: 60121234567
+          </div>
+          <div class="recipient-contact" id="recipientEmail" contenteditable="true" spellcheck="false">E-mel: noreply@bespoke.my</div>
+        </div>
+
+        <!-- Dates (Right) -->
+        <div class="dates-block">
+          <div class="date-row">
+            <span class="date-label" id="lblInvoiceDate">TARIKH:</span>
+            <span class="date-value" id="invoiceDate" contenteditable="true" spellcheck="false">8/3/2026</span>
+          </div>
+          <div class="date-row due">
+            <span class="date-label" id="lblDueDate">TARIKH TAMAT:</span>
+            <span class="date-value" id="dueDate" contenteditable="true" spellcheck="false">8/3/2026</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Table Section -->
+      <section class="table-wrapper">
+        <table class="invoice-table" id="itemsTable">
+          <thead>
+            <tr>
+              <th class="col-desc" id="thColDesc">PENERANGAN</th>
+              <th class="col-qty" id="thColQty">KUANTITI</th>
+              <th class="col-price" id="thColPrice">SEUNIT<br>(RM)</th>
+              <th class="col-amount" id="thColAmount">JUMLAH (RM)</th>
+              <th class="col-action no-print"></th>
+            </tr>
+          </thead>
+          <tbody id="itemsTableBody">
+            <!-- Dynamic item rows will be rendered here -->
+          </tbody>
+        </table>
+
+        <!-- Add Row Button (Hidden during print) -->
+        <div class="table-toolbar no-print">
+          <button type="button" class="btn-add-item" id="btnAddRow" title="Tambah baris item baru">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            + Tambah Penerangan / Baris Item
+          </button>
+        </div>
+      </section>
+
+      <!-- Totals & Balances Section (Right Aligned) -->
+      <section class="doc-totals-section">
+        <div class="totals-card">
+          <div class="totals-line">
+            <span class="totals-label" id="lblSubtotal">Subjumlah:</span>
+            <span class="totals-val" id="valSubtotal">RM 6500.00</span>
+          </div>
+
+          <div class="totals-divider"></div>
+
+          <div class="totals-line grand-total">
+            <span class="totals-label" id="lblGrandTotal">Jumlah:</span>
+            <span class="totals-val" id="valGrandTotal">RM 6500.00</span>
+          </div>
+
+          <div class="totals-line">
+            <span class="totals-label" id="lblPaid">Jumlah Dibayar:</span>
+            <span class="totals-val paid-val-container">
+              <span>RM</span>
+              <input type="number" step="0.01" min="0" class="inline-input-paid" id="inputPaid" value="0.00">
+            </span>
+          </div>
+
+          <div class="totals-line balance-due">
+            <span class="totals-label" id="lblBalanceDue">Baki Perlu Dibayar:</span>
+            <span class="totals-val" id="valBalanceDue">RM 6500.00</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Payment Details Box with QR Code -->
+      <section class="payment-box">
+        <div class="payment-box-left">
+          <div class="payment-title" id="paymentTitle" contenteditable="true" spellcheck="false">BUTIRAN PEMBAYARAN
+          </div>
+          <div class="bank-detail-row">
+            <strong id="lblBankName">Nama Bank:</strong>
+            <span id="bankName" contenteditable="true" spellcheck="false">AEON Bank</span>
+          </div>
+          <div class="bank-detail-row">
+            <strong id="lblAccountNo">No. Akaun:</strong>
+            <span id="accountNumber" contenteditable="true" spellcheck="false">9988555603677</span>
+          </div>
+          <div class="bank-detail-row">
+            <strong id="lblAccountName">Nama Akaun:</strong>
+            <span id="accountName" contenteditable="true" spellcheck="false">Nur Asmawi Subri</span>
+          </div>
+          <div class="bank-detail-row">
+            <strong id="lblIdNo">No. K/P:</strong>
+            <span id="idNumber" contenteditable="true" spellcheck="false">840724-02-5433</span>
+          </div>
+        </div>
+
+        <div class="payment-box-right">
+          <div class="qr-container" id="qrContainer" title="Klik untuk tukar imej Kod QR">
+            <img src="assets/aeon-qr-sample.svg" alt="Kod QR DuitNow AEON Bank" id="qrImage">
+            <div class="qr-overlay-btn no-print">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                </path>
+              </svg>
+              <span>Tukar QR</span>
+            </div>
+          </div>
+          <div class="qr-caption no-print">
+            <span class="quick-link" id="btnResetQr">Reset QR</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Section -->
+      <footer class="doc-footer">
+        <div class="footer-business-text" id="footerText" contenteditable="true" spellcheck="false">
+          TERIMA KASIH ATAS URUSAN ANDA
+        </div>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <!-- ==========================================================================
+       Pengurus Data Modal (Data Manager Interface)
+       Urus data.json: Senarai, Duplicate, Load nama sama, Padam, Eksport
+       ========================================================================== -->
+  <div class="modal-backdrop" id="dataManagerModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="modalTitle">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+            </path>
+          </svg>
+          Pengurus Data Invois
+        </h2>
+        <button type="button" class="btn-close-modal" id="btnCloseDataManager" aria-label="Tutup modal">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Search & Control Bar -->
+        <div class="data-stats-bar">
+          <div class="data-search-box">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input type="text" id="dataSearchInput" placeholder="Cari mengikut No Invois, Nama Klien atau Tarikh...">
+          </div>
+
+          <div class="data-actions-group">
+            <button type="button" class="btn btn-secondary" id="btnModalTriggerUpload"
+              title="Muat fail data.json dari komputer/telefon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+              </svg>
+              Muat Fail JSON
+            </button>
+            <button type="button" class="btn btn-secondary" id="btnLoadDemoMulti"
+              title="Muat contoh 3 invois untuk menguji penduaan dan nama sama">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                </path>
+              </svg>
+              Contoh Demo (3 Invois)
+            </button>
+            <button type="button" class="btn btn-primary" id="btnSaveCurrentToList"
+              title="Simpan apa yang sedang ditaip ke dalam senarai ini">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+              Simpan Invois Semasa
+            </button>
+          </div>
+        </div>
+
+        <!-- Invoices List Container -->
+        <div class="invoices-list-container" id="invoicesList">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div style="font-size: 0.8rem; color: var(--text-muted);" id="dataManagerSummaryText">
+          Menunjukkan 0 invois tersimpan
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button type="button" class="btn btn-success" id="btnDownloadAllJson"
+            title="Muat turun kesemua invois ini ke fail data.json">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+            Muat Turun Semua (data.json)
+          </button>
+          <button type="button" class="btn btn-secondary" id="btnCloseDataManagerBottom">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Main JavaScript Logic -->
+  <script src="js/app.js"></script>
+</body>
+
+</html>

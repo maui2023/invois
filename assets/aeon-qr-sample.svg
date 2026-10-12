@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320" width="240" height="320">
+  <!-- Card Background & Border -->
+  <rect x="2" y="2" width="236" height="316" rx="16" fill="#ffffff" stroke="#e6007e" stroke-width="3"/>
+  
+  <!-- Top Header Banner -->
+  <path d="M 2 18 C 2 9.16 9.16 2 18 2 L 222 2 C 230.84 2 238 9.16 238 18 L 238 52 L 2 52 Z" fill="#e6007e"/>
+  
+  <!-- Bank Logo & Name -->
+  <text x="120" y="34" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">/EON Bank</text>
+  
+  <!-- Account Holder Name -->
+  <text x="120" y="76" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#333333" text-anchor="middle">Maui Sabily</text>
+  
+  <!-- QR Code Frame -->
+  <rect x="28" y="92" width="184" height="184" rx="8" fill="#ffffff" stroke="#fbcfe8" stroke-width="1.5"/>
+  
+  <!-- QR Pattern (DuitNow style magenta modules) -->
+  <g fill="#e6007e">
+    <!-- Top-Left Finder Pattern -->
+    <rect x="42" y="106" width="46" height="46" rx="6" fill="#e6007e"/>
+    <rect x="48" y="112" width="34" height="34" rx="4" fill="#ffffff"/>
+    <rect x="54" y="118" width="22" height="22" rx="2" fill="#e6007e"/>
+    
+    <!-- Top-Right Finder Pattern -->
+    <rect x="152" y="106" width="46" height="46" rx="6" fill="#e6007e"/>
+    <rect x="158" y="112" width="34" height="34" rx="4" fill="#ffffff"/>
+    <rect x="164" y="118" width="22" height="22" rx="2" fill="#e6007e"/>
+    
+    <!-- Bottom-Left Finder Pattern -->
+    <rect x="42" y="216" width="46" height="46" rx="6" fill="#e6007e"/>
+    <rect x="48" y="222" width="34" height="34" rx="4" fill="#ffffff"/>
+    <rect x="54" y="228" width="22" height="22" rx="2" fill="#e6007e"/>
+
+    <!-- Small Alignment Pattern in Bottom-Right -->
+    <rect x="156" y="220" width="24" height="24" rx="4" fill="#e6007e"/>
+    <rect x="161" y="225" width="14" height="14" rx="2" fill="#ffffff"/>
+    <rect x="165" y="229" width="6" height="6" fill="#e6007e"/>
+
+    <!-- Data matrix dots representation -->
+    <rect x="96" y="108" width="8" height="8" rx="1"/>
+    <rect x="110" y="108" width="8" height="8" rx="1"/>
+    <rect x="124" y="108" width="8" height="8" rx="1"/>
+    <rect x="136" y="108" width="8" height="8" rx="1"/>
+    
+    <rect x="96" y="122" width="8" height="8" rx="1"/>
+    <rect x="124" y="122" width="8" height="8" rx="1"/>
+    
+    <rect x="102" y="134" width="8" height="8" rx="1"/>
+    <rect x="116" y="134" width="8" height="8" rx="1"/>
+    <rect x="130" y="134" width="8" height="8" rx="1"/>
+    
+    <rect x="96" y="146" width="8" height="8" rx="1"/>
+    <rect x="110" y="146" width="8" height="8" rx="1"/>
+    <rect x="136" y="146" width="8" height="8" rx="1"/>
+
+    <rect x="42" y="160" width="8" height="8" rx="1"/>
+    <rect x="56" y="160" width="8" height="8" rx="1"/>
+    <rect x="70" y="160" width="8" height="8" rx="1"/>
+    <rect x="84" y="160" width="8" height="8" rx="1"/>
+    <rect x="98" y="160" width="8" height="8" rx="1"/>
+    <rect x="112" y="160" width="8" height="8" rx="1"/>
+    <rect x="126" y="160" width="8" height="8" rx="1"/>
+    <rect x="140" y="160" width="8" height="8" rx="1"/>
+    <rect x="154" y="160" width="8" height="8" rx="1"/>
+    <rect x="168" y="160" width="8" height="8" rx="1"/>
+    <rect x="182" y="160" width="8" height="8" rx="1"/>
+
+    <rect x="48" y="174" width="8" height="8" rx="1"/>
+    <rect x="76" y="174" width="8" height="8" rx="1"/>
+    <rect x="104" y="174" width="8" height="8" rx="1"/>
+    <rect x="118" y="174" width="8" height="8" rx="1"/>
+    <rect x="132" y="174" width="8" height="8" rx="1"/>
+    <rect x="160" y="174" width="8" height="8" rx="1"/>
+    <rect x="188" y="174" width="8" height="8" rx="1"/>
+
+    <rect x="42" y="188" width="8" height="8" rx="1"/>
+    <rect x="62" y="188" width="8" height="8" rx="1"/>
+    <rect x="90" y="188" width="8" height="8" rx="1"/>
+    <rect x="110" y="188" width="8" height="8" rx="1"/>
+    <rect x="124" y="188" width="8" height="8" rx="1"/>
+    <rect x="146" y="188" width="8" height="8" rx="1"/>
+    <rect x="174" y="188" width="8" height="8" rx="1"/>
+
+    <rect x="48" y="202" width="8" height="8" rx="1"/>
+    <rect x="68" y="202" width="8" height="8" rx="1"/>
+    <rect x="96" y="202" width="8" height="8" rx="1"/>
+    <rect x="116" y="202" width="8" height="8" rx="1"/>
+    <rect x="138" y="202" width="8" height="8" rx="1"/>
+    <rect x="166" y="202" width="8" height="8" rx="1"/>
+
+    <rect x="96" y="216" width="8" height="8" rx="1"/>
+    <rect x="110" y="216" width="8" height="8" rx="1"/>
+    <rect x="124" y="216" width="8" height="8" rx="1"/>
+    <rect x="138" y="216" width="8" height="8" rx="1"/>
+
+    <rect x="102" y="230" width="8" height="8" rx="1"/>
+    <rect x="124" y="230" width="8" height="8" rx="1"/>
+    <rect x="138" y="230" width="8" height="8" rx="1"/>
+
+    <rect x="96" y="244" width="8" height="8" rx="1"/>
+    <rect x="110" y="244" width="8" height="8" rx="1"/>
+    <rect x="124" y="244" width="8" height="8" rx="1"/>
+    <rect x="138" y="244" width="8" height="8" rx="1"/>
+
+    <rect x="188" y="220" width="8" height="8" rx="1"/>
+    <rect x="188" y="236" width="8" height="8" rx="1"/>
+    <rect x="156" y="252" width="8" height="8" rx="1"/>
+    <rect x="170" y="252" width="8" height="8" rx="1"/>
+    <rect x="184" y="252" width="8" height="8" rx="1"/>
+  </g>
+
+  <!-- Bottom Instructions -->
+  <text x="120" y="293" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="7.5" font-weight="600" fill="#888888" text-anchor="middle">Imbas kod QR DuitNow ini untuk bayaran</text>
+</svg>
